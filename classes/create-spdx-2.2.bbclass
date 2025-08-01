@@ -683,6 +683,12 @@ python do_create_runtime_spdx() {
                 "%s:%s" % (package_ref.externalDocumentId, package_doc.SPDXID)
             )
 
+            runtime_doc.add_relationship(
+                runtime_doc.SPDXID,
+                "DESCRIBES",
+                "%s:%s" % (package_ref.externalDocumentId, spdx_package.SPDXID)
+            )
+
             deps = bb.utils.explode_dep_versions2(localdata.getVar("RDEPENDS") or "")
             seen_deps = set()
             for dep, _ in deps.items():
