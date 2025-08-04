@@ -115,7 +115,7 @@ def convert_license_to_spdx(lic, license_data, document, d, existing={}):
         spdx_license = d.getVarFlag("SPDXLICENSEMAP", l) or l
         # Some licenses are deprecated and need to be converted to formal SPDX licenses
         if spdx_license in spdx_license_map.keys():
-            return spdx_license_map[l]
+            return spdx_license_map[spdx_license]
 
         if spdx_license in license_data["licenses"]:
             return spdx_license
@@ -681,12 +681,6 @@ python do_create_runtime_spdx() {
                 runtime_doc.SPDXID,
                 "AMENDS",
                 "%s:%s" % (package_ref.externalDocumentId, package_doc.SPDXID)
-            )
-
-            runtime_doc.add_relationship(
-                runtime_doc.SPDXID,
-                "DESCRIBES",
-                "%s:%s" % (package_ref.externalDocumentId, spdx_package.SPDXID)
             )
 
             deps = bb.utils.explode_dep_versions2(localdata.getVar("RDEPENDS") or "")
