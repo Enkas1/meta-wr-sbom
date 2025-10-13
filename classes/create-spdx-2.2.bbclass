@@ -755,7 +755,7 @@ do_create_runtime_spdx[rdeptask] = "do_create_spdx"
 do_rootfs[recrdeptask] += "do_create_spdx do_create_runtime_spdx"
 do_rootfs[cleandirs] += "${SPDXIMAGEWORK}"
 
-ROOTFS_POSTUNINSTALL_COMMAND =+ "image_combine_spdx"
+ROOTFS_POSTUNINSTALL_COMMAND += "image_combine_spdx;"
 
 do_populate_sdk[recrdeptask] += "do_create_spdx do_create_runtime_spdx"
 do_populate_sdk[cleandirs] += "${SPDXSDKWORK}"
